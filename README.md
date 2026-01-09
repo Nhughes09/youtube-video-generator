@@ -1,147 +1,172 @@
 # 🎬 AI Video Generator
 
-**Automated 15-20 minute YouTube video pipeline for AI/Robotics content.**
+**Automated YouTube video pipeline for AI/Robotics/Unemployment content.**
 
-100% FREE • Self-Improving • Production-Ready
+Generate 15+ minute viral videos with AI narration, stock footage, and trending topics.
 
 ---
 
 ## 🚀 Quick Start
 
 ```bash
-# 1. Install dependencies
+# Clone the repo
+git clone https://github.com/Nhughes09/youtube-video-generator.git
+cd youtube-video-generator
+
+# Install dependencies
 pip install -r requirements.txt
 
-# 2. Set API keys in .env (copy from .env.example)
-cp .env.example .env
-# Edit with your free API keys
+# Set your API keys (see below)
+export PEXELS_API_KEY="your_key"
+export PIXABAY_API_KEY="your_key"
 
-# 3. Run with auto-topic discovery
+# Generate a video!
 python main.py --discover
-
-# Or specify a topic
-python main.py --topic "AI Mass Layoffs in 2026"
-
-# Test mode (skip rendering)
-python main.py --discover --test
 ```
 
 ---
 
-## 🔑 Free API Keys (Required)
+## 🔑 API Keys Setup (All FREE)
 
-| Service           | Get Key                                                     | Purpose             |
-| ----------------- | ----------------------------------------------------------- | ------------------- |
-| **Google Gemini** | [aistudio.google.com](https://aistudio.google.com/api-keys) | Script generation   |
-| **Pexels**        | [pexels.com/api](https://www.pexels.com/api/)               | Stock videos/photos |
-| **Pixabay**       | [pixabay.com/api](https://pixabay.com/api/docs/)            | Stock videos/photos |
-| **Pollinations**  | No key needed!                                              | AI image generation |
+| Service          | Get Key                                                                  | Purpose             | Required?   |
+| ---------------- | ------------------------------------------------------------------------ | ------------------- | ----------- |
+| **Pexels**       | [pexels.com/api](https://www.pexels.com/api/)                            | Stock videos/photos | Recommended |
+| **Pixabay**      | [pixabay.com/api](https://pixabay.com/api/docs/)                         | Stock videos/photos | Optional    |
+| **HuggingFace**  | [huggingface.co/settings/tokens](https://huggingface.co/settings/tokens) | AI models           | Optional    |
+| **Pollinations** | No key needed!                                                           | AI image generation | ✅ Built-in |
+
+### Set Keys in Terminal:
+
+```bash
+export PEXELS_API_KEY="your_pexels_key"
+export PIXABAY_API_KEY="your_pixabay_key"
+export HUGGINGFACE_API_KEY="your_hf_key"
+```
+
+Or create a `.env` file:
+
+```bash
+cp .env.example .env
+# Edit .env with your keys
+```
 
 ---
 
 ## 📁 Project Structure
 
 ```
-videogereator2026/
-├── main.py                 # 🎯 Main orchestrator
+youtube-video-generator/
+├── main.py                 # 🎯 Main orchestrator - run this!
 ├── reasoning_engine.py     # 🧠 Meta-cognitive intelligence
-├── topic_discovery.py      # 📰 News/Reddit fetching
-├── script_generator.py     # 📝 Gemini script generation
-├── visual_sourcer.py       # 🎬 Pexels/Pixabay/Pollinations
-├── voiceover.py            # 🎙️ gTTS text-to-speech
-├── video_assembler.py      # 🎥 MoviePy video creation
-├── metadata_generator.py   # 📋 YouTube metadata
+├── topic_discovery.py      # 📰 Finds trending topics
+├── script_generator.py     # 📝 Generates video scripts
+├── visual_sourcer.py       # 🎬 Gets stock footage + AI images
+├── voiceover.py            # 🎙️ Text-to-speech (Edge TTS)
+├── video_assembler.py      # 🎥 Assembles final video
+├── metadata_generator.py   # 📋 YouTube titles/descriptions
+├── compliance_checker.py   # ✅ Monetization safety check
 ├── config.py               # ⚙️ Configuration
-├── utils.py                # 🔧 Utilities & logging
-├── requirements.txt
-├── output/                 # Generated videos
-├── logs/                   # Execution logs
-└── temp/                   # Working files
+├── utils.py                # 🔧 Utilities
+└── requirements.txt        # 📦 Dependencies
 ```
 
 ---
 
-## 🧠 Intelligent Features
+## 🎯 Usage Examples
 
-### Reasoning Engine
-
-- **Chain-of-thought logging** for every decision
-- **Pattern learning** from successful executions
-- **Self-improvement** through metric analysis
-
-### Quality Metrics
-
-- Risk assessment (all stock = low risk ✓)
-- Viral score prediction
-- Retention estimation
-
-### All Logs Saved
-
-```
-logs/
-├── video_generator.log     # Main log
-├── knowledge/              # Learned patterns
-│   └── patterns.json       # Success patterns
-└── assembly_*.json         # Per-video metrics
-```
-
----
-
-## 📊 Output
-
-Each run produces:
-
-- `video_YYYYMMDD_HHMMSS.mp4` - Main 15-20 min video
-- `shorts/` - 3 vertical Shorts clips
-- `*_script.md` - Full script
-- `*_metadata.json` - Titles, tags, description
-- `quality_metrics.json` - Analysis
-
----
-
-## 🎯 Video Structure
-
-| Section      | Time        | Purpose                       |
-| ------------ | ----------- | ----------------------------- |
-| Hook         | 0:00-0:30   | Shocking stat, scroll-stopper |
-| Overview     | 0:30-2:00   | What's covered, why watch     |
-| Breakdown    | 2:00-12:00  | 5-7 key points with analysis  |
-| Implications | 12:00-15:00 | Fears vs opportunities        |
-| Conclusion   | 15:00+      | Takeaways, CTA, next video    |
-
----
-
-## ⚠️ Important Notes
-
-1. **Manual Review Required** - Review content before uploading
-2. **Transformative Content** - Heavy analysis supports fair use
-3. **No Scraping** - Uses only safe stock/AI sources
-4. **Monetization Ready** - 15+ min enables mid-roll ads
-
----
-
-## 🔧 Configuration
-
-Edit `config.py` or set environment variables:
+### Auto-discover trending topic:
 
 ```bash
-export GEMINI_API_KEY="your_key"
-export PEXELS_API_KEY="your_key"
-export PIXABAY_API_KEY="your_key"
+python main.py --discover
+```
+
+### Specify a topic:
+
+```bash
+python main.py --topic "AI Mass Layoffs 2026"
+```
+
+### Test mode (no rendering):
+
+```bash
+python main.py --discover --test
 ```
 
 ---
 
-## 📈 Self-Improvement
+## 🧠 How It Works
 
-The system learns from each run:
-
-- Tracks which decisions led to success
-- Stores patterns for future reference
-- Analyzes quality metrics for optimization
-
-Check `logs/knowledge/patterns.json` for learned patterns.
+1. **Topic Discovery** - Scans Google News & Reddit for trending AI/robotics topics
+2. **Script Generation** - Creates 15-20 min script with viral structure
+3. **Visual Sourcing** - Gets stock footage from Pexels/Pixabay + AI images from Pollinations
+4. **Voiceover** - Generates human-like narration with Microsoft Edge TTS
+5. **Assembly** - Combines everything into final MP4
+6. **Metadata** - Creates optimized titles, descriptions, tags
 
 ---
 
-**Built with 🧠 meta-cognitive awareness for intelligent video creation.**
+## 📊 Output Files
+
+After running, check the `output/` folder:
+
+- `video_*.mp4` - Your video (upload to YouTube)
+- `*_script.md` - Full script
+- `*_metadata.json` - Title/description/tags
+- `shorts/` - Vertical shorts clips
+
+---
+
+## 🔒 Monetization Safe
+
+✅ All visuals are royalty-free (Pexels/Pixabay) or AI-generated  
+✅ No copyrighted content  
+✅ Original commentary/analysis  
+✅ Human-like voice (not robotic)
+
+---
+
+## ⚡ Features
+
+- **Trending Topics** - Auto-discovers viral content
+- **81+ Visual Segments** - Proper viral pacing (~9 sec each)
+- **Edge TTS Voice** - Human-like Microsoft neural voice
+- **Shorts Extraction** - Auto-generates vertical clips
+- **Reasoning Engine** - Learns from each run
+- **Compliance Check** - Verifies monetization safety
+
+---
+
+## 📝 For Cursor/Antigravity Users
+
+Just tell the AI:
+
+> "Generate me a 15-minute video about [TOPIC]"
+
+The AI will:
+
+1. Write the script
+2. Generate images with `generate_image` tool
+3. Create voiceover with Edge TTS
+4. Assemble the video with MoviePy
+5. Save to your Downloads folder
+
+---
+
+## 🤝 Contributing
+
+PRs welcome! Focus areas:
+
+- More visual variety
+- Better voice options
+- Additional news sources
+- Caption/subtitle support
+
+---
+
+## 📜 License
+
+MIT - Use freely, credit appreciated.
+
+---
+
+**Built for [@airobotsunemployment](https://youtube.com/@airobotsunemployment)** 🚀
